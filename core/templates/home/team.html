@@ -1,0 +1,16 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+  <div class="header-mid">
+      <div class="container-fluid"> <!-- Mengubah container menjadi container-fluid untuk penuh layar -->
+          <div class="row d-flex align-items-center">
+              <div class="col-12">
+                  <div class="header-banner">
+                      <img src="{% static 'assets/img/logo/E.png' %}" alt="" class="img-fluid w-100"> <!-- Tambahkan kelas untuk gambar penuh -->
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <br>
+{% endblock %}

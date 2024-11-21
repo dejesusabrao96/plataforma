@@ -1,0 +1,29 @@
+<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+	<ul class="navbar-nav ml-auto">
+		<li class="nav-item"><a class="nav-link" href="{% url 'home' %}"> Home <i class="fa fa-home"></i></a></li>
+		<li class="nav-item"><a class="nav-link" href="{% url 'List-News' %}"><i class="fa fa-pencil"></i> News </a></li>
+		<li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-file-text"></i> Publication </a></li> 
+		<li class="nav-item"><a class="nav-link" href="{% url 'projectimplementation' %}"><i class="fa fa-file-text"></i> Program </a></li> 
+		<li class="nav-item"><a class="nav-link" href="{% url 'actividade' %}"><i class="fa fa-file-text"></i> Activity </a></li> 
+
+	<!-- 	<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">DADUS </a>
+			<div class="dropdown-menu" aria-labelledby="profile">
+				<a class="dropdown-item" href=""><i class="fa fa-table"></i> Professores</a>
+				<a class="dropdown-item" href=""><i class="fa fa-table"></i> Estudante</a>
+				<a class="dropdown-item" href=""><i class="fa fa-list"></i> Orario</a> 
+			</div>
+		</li> -->
+		<li class="nav-item"><a class="nav-link" href="{% url 'report' %}"> <i class="fa fa-bar-chart fa-1x"></i> Report </a></li>
+		<li class="nav-item"><a class="nav-link" href="">Users <i class="fa fa-users"></i></a></li>
+		<li class="nav-item"><a class="nav-link" href=""><i class="fa fa-cogs"></i></a></li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ request.user.username|upper }}</a>
+			<div class="dropdown-menu" aria-labelledby="profile">
+				<a class="dropdown-item" href="{% url 'manageAccount' %}"><i class="fa fa-users"></i> Account</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a>
+			</div>
+		</li>
+	</ul>
+</div>

@@ -1,0 +1,92 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+ <main>
+        <!-- About US Start -->
+        <div class="about-area">
+            <div class="container">
+                    <!-- Hot Aimated News Tittle-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="trending-tittle">
+                                <!-- <strong>Trending now</strong> -->
+                                <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
+                                <div class="trending-animated">
+                                    <ul id="js-news" class="js-hidden">
+                                        <li class="news-item center">Bemvindo mai Funda&ccedil;&atilde;o Nova Esperan&ccedil;a Timor-Leste...!!!</li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                   <div class="row">
+                        <div class="col-lg-8">
+                            <!-- Trending Tittle -->
+                                    <div class="about-right mb-90">
+                                        <div class="about-img">
+                                            <img src="{% static 'assets/img/post/foto1.jpeg' %}" alt="">
+                                        </div>
+                                        <div class="section-tittle mb-30 pt-30">
+                                            <h3>F. NETIL</h3>
+                                        </div>
+                                        <div class="about-pream mb-2">
+                                            <p class="about-pera1 mb-25">
+                                                Timor-Leste is a republic democratic country that the majority of populations survive from agriculture sector. The farmers start to sustain their lives from farming activities even they face many problems such as bad road, lack availability of water, drought, climate change, 
+                                                natural disaster, that impacted to farmers couldn’t increase the quality of production in one side and it became challenges for them to sell their local product at the market because of the technical knowledge and professionalism in the sector at the other side.  
+                                                Look at the difficulties that the community face, that’s why we as Timorese people that solider to the pressure of stream poverty in the country and lack of communities situation improve decide to establish a Non-Governmental Organization (NGO) named: NETIL means: New Expectation of Timor Leste or New Hope for Timor Leste. 
+                                                We could put our ideas and thinking together in the process of supporting and improving the standard living of communities to access potable water, sanitation, improve rural economic, improve agriculture production, DRR program, and capacity building for commuites and advocacy. As a sovereignty nation and democracy we need participation of every one in the communities especially youth and women to participate in the development process. To encourage every one, NETIL foundation formed on 10.10.2010, transform from CBO broken heart that was formed on 15.09.2007. 
+                                                NETIL organization founders come up with commitment and desire to serve the community and improve economy development for rural communities. Even NETIL is non governmental organization; the founders have the responsibility to work with Government, National and International agencies, relevant stakeholders to encourage communities to take part nation building and peace building. 
+                                            </p>
+                                        </div>
+                                        <div class="section-tittle mb-30 pt-30">
+                                            <h3>Vision</h3>
+                                        </div>
+                                        <div class="about-pream mb-2">
+                                            <p class="about-pera1 mb-25">
+                                                Communities independently own their initiative, to promote and develop local product, increase economic income to eliminate poverty in society, everybody is free and access to education, fight against corruption, collusion, nepotism and every one living prosperously.
+                                            </p>
+                                        </div>
+                                        <div class="section-tittle mb-30 pt-30">
+                                            <h3>Misaun</h3>
+                                        </div>
+                                        <div class="about-pream mb-2">
+                                            <p class="about-pera1 mb-25">
+                                                1.   Promote community participation in development to increase human resource capacities.<br>
+                                                2.  Promote market linkage for farmers’ product to access the market.<br>  
+                                                3.  Disseminate information to proclaim truth through advocacy.  
+
+                                            </p>
+                                        </div>
+                                    </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <!-- Section Tittle -->
+                           
+                    <!-- Right content -->
+		                        {% for i in latest_news %}
+		                        <div class="trand-right-single d-flex align-items-start mb-1" style="padding: 0;">
+		                            <div class="trand-right-img" style="flex: 0 0 100px; max-width: 100px;">
+		                                <img src="{{ i.image.url }}" class="img-fluid rounded">
+		                            </div>
+		                            <div class="trand-right-cap ml-2" style="line-height: 1.1;"> <!-- Atur line-height untuk merapatkan baris -->
+		                                <span class="color1 mb-1" style="line-height: 1.1;">{{ i.category }}</span>
+		                                <h6 class="text-white mb-1 mt-1" style="font-size: 0.9rem; line-height: 1.1;"><b>{{ i.title }}</b></h6> <!-- Line-height ditambahkan -->
+		                                <p class="text-white mb-1" style="font-size: 0.9rem; line-height: 1.1; font-family: 'Times New Roman', serif; font-style: italic;"><b>{{ i.excerpt }}</b></p>
+		                                <h4><a href="{% url 'detailnews' i.id %}" class="text-black ">Read more...</a></h4>
+		                            </div>
+		                        </div>
+		                        {% endfor %}
+                            
+                            <!-- New Poster -->
+                           <!--  <div class="news-poster d-none d-lg-block">
+                                <img src="{% static 'assets/img/news/news_card.jpg' %}" alt="">
+                            </div> -->
+                            <br>
+                        </div>
+                   </div>
+            </div>
+        </div>
+        <!-- About US End -->
+    </main>
+{% endblock %}

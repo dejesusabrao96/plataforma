@@ -1,0 +1,94 @@
+{% load static %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+<footer>
+    <!-- Footer Start-->
+    <div class="footer-area footer-padding fix">
+         <div class="container">
+             <div class="row d-flex justify-content-between">
+                 <div class="col-xl-2 col-lg-1 col-md-1 col-sm-1">
+                     <div class="single-footer-caption">
+                         <div class="single-footer-caption">
+                             <!-- logo -->
+                             <div class="footer-logo">
+                                 <a href="index.html"><img src="{% static 'assets/img/logo/logo1.png' %}" alt=""></a>
+                             </div>
+                             <div class="footer-tittle">
+                                <div class="footer-pera" style="line-height: 1.2;"> <!-- Mengatur 
+                                    jarak antar baris teks -->
+                                    <h4 class="mb-1">Contact Us</h4>
+                                    <hr>
+                                    <p class="mb-0">Rua :   Aipelo – Fatumasi</p> <!-- Margin bawah kecil -->
+                                    <p class="mb-0">77347012 / 75512873</p>
+                                    <p class="mb-0">paulinomotaulun@gmail.com</p>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-xl-5 col-lg- col-md-1  col-sm-1">
+                     <div class="single-footer-caption mt-1">
+                         <div class="footer-tittle">
+                            <h4>Location</h4><hr>
+                                <div id="map" style="width: 100%; height: 200px;"></div>
+                                 <div id="map"></div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                    <div class="single-footer-caption mb-50 mt-60">
+                        <div class="footer-tittle" style="line-height: 1.2;"> <!-- Atur line-height agar lebih rapat -->
+                            <h4 class="mb-1">About Us</h4> <!-- Mengurangi margin bawah -->
+                            <hr>
+                            <p class="mb-0"><a href="" class="text-white">UNDERSTANDING F.NETIL</a></p>
+                            <p class="mb-0"><a href="" class="text-white">Istoria F.Netil pdf link</a></p>
+                            <p class="mb-0"><a href="" class="text-white">Vizaun no misaun pdf link</a></p>
+                            <p class="mb-0"><a href="{% url 'report_list'%}" class="text-white">Anual Report Activity</a></p>
+                            <p class="mb-0"><a href="" class="text-white">Organization Goal:</a></p>
+                            <p class="mb-0"><a href="" class="text-white">Background of Organization</a></p>
+                        </div>
+                    </div>
+                </div>
+
+             </div>
+         </div>
+     </div>
+    <!-- footer-bottom aera -->
+    
+    <div class="footer-bottom-area footer-bg">
+            <div class="container">
+                <div class="footer-border">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-12 ">
+                            <div class="footer-copy-right text-center">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Info017</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!--   <div id="mapid">
+            
+        </div> -->
+
+     <script>
+        var map = L.map('map').setView([-8.56371035, 125.56037373], 10);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.marker([-8.56371035, 125.56037373]).addTo(map)
+            .bindPopup('FNETIL<br> Liquisa')
+            .openPopup();
+    </script>
+
+    <script src="{% static './main/js/main.js' %}"></script>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+
+</footer>

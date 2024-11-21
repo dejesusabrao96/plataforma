@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+<main>
+        <!-- About US Start -->
+        <div class="about-area">
+            <div class="container">
+                    <!-- Hot Aimated News Tittle-->
+                   <div class="row">
+                        <div class="col-lg-8">
+                            <!-- Trending Tittle -->
+                            <div class="about-right mb-90">
+                                 <div class="about-img" style="max-width: 100%; margin: 0 auto;"> <!-- Kurangi ukuran gambar -->
+                                    <img src="{{ activity.image.url }}" alt="" style="width: 100%; height: 450px;"> <!-- Memastikan gambar tetap proporsional -->
+                                </div>
+                                <p class="about-pera1 mb-25" style="text-align: justify;">{{activity.year}}</p>
+                                <p class="about-pera1 mb-25" style="text-align: justify;">{{activity.date}}</p>
+                                <div class="section-tittle mb-10 pt-2">
+                                    <h3>{{activity.title}}</h3>
+                                </div>
+                                <div class="about-prea">
+                                    <p class="about-pera1 mb-25">{{activity.activity_content|safe}}</p>
+                                    <p class="about-pera1 mb-25" style="text-align: justify;">{{activity.category|safe}}</p>
+                                </div>
+                            </div>
+                        </div>
+                <!-- Right content -->
+                    <div class="col-lg-4 mb-1">
+                        {% for i in latest_news %}
+                        <div class="trand-right-single d-flex align-items-start mb-1" style="padding: 0;">
+                            <div class="trand-right-img" style="flex: 0 0 100px; max-width: 100px;">
+                                <img src="{{ i.image.url }}" class="img-fluid rounded">
+                            </div>
+                            <div class="trand-right-cap ml-2" style="line-height: 1.1;"> <!-- Atur line-height untuk merapatkan baris -->
+                                <span class="color1 mb-1" style="line-height: 1.1;">{{ i.category }}</span>
+                                <h6 class="text-white mb-1 mt-1" style="font-size: 0.9rem; line-height: 1.1;"><b>{{ i.title }}</b></h6> <!-- Line-height ditambahkan -->
+                                <p class="text-white mb-1" style="font-size: 0.9rem; line-height: 1.1;"><b>{{ i.excerpt }}</b></p> <!-- Line-height ditambahkan -->
+                                <h6><a href="#" class="text-black ">Read more...</a></h6>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                       
+                   </div>
+            </div>
+        </div>
+        <!-- About US End -->
+    </main>
+{% endblock %}

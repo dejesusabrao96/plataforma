@@ -1,0 +1,83 @@
+.facebook-style-image {
+    width: 100%; /* Ensure the image takes up full width of its container */
+    height: 200px; /* Set a fixed height for uniformity */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 8px; /* Optional: Adds slightly rounded corners, similar to Facebook */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow for depth */
+}
+.trand-right-single .trand-right-img img {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+}
+
+.trand-right-single .trand-right-cap p, 
+.trand-right-single .trand-right-cap p {
+    margin-bottom: 5px; /* Customize as per your preference */
+}
+
+.trand-right-single .trand-right-cap a {
+    font-size: 0.9rem;
+    color: #000000; /* Ensure link color is readable */
+}
+.about-pera1 {
+    text-align: justify;
+}
+.breadcrumb-item.text-black a {
+    color: black;
+}
+.icon-small {
+        font-size: 0.8rem; /* Adjust the size as needed */
+    }
+.icon-background {
+    background-color: #007bff; /* Change to your desired background color */
+    border-radius: 50%; /* Optional: makes the background circular */
+    padding: 5px; /* Adjust padding as needed */
+    display: inline-flex; /* Ensures proper alignment */
+    align-items: center; /* Center the icon vertically */
+    justify-content: center; /* Center the icon horizontally */
+    margin-right: 5px; /* Space between icon and text */
+    color: white; /* Icon color */
+}
+.category-close {
+    margin-top: -10px; /* Adjust as needed */
+    display: block;
+}
+.text-white {
+    color: white;
+}
+
+
+/* Untuk memastikan gambar dan elemen responsif */
+.weekly3-img img {
+    width: 100%; /* Gambar akan menyesuaikan lebar kontainer */
+    height: auto; /* Menjaga aspek rasio gambar */
+}
+
+/* Styling untuk slider agar item lebih fleksibel */
+.weekly3-news-active {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Responsif pada layar yang lebih kecil */
+@media (max-width: 767px) {
+    .weekly3-single {
+        margin-bottom: 20px; /* Jarak antar item pada mobile */
+    }
+}
+
+/* Untuk perangkat yang lebih besar */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .weekly3-single {
+        margin-bottom: 30px; /* Menambah jarak pada tablet */
+    }
+}
+
+/* Untuk desktop dan laptop (min-width 1025px) */
+@media (min-width: 1025px) {
+    .weekly3-single {
+        margin-bottom: 30px; /* Menjaga jarak pada layar besar */
+    }
+}

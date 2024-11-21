@@ -1,0 +1,287 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+    <!-- Trending Area Start -->
+    <div class="trending-area fix">
+        <div class="container">
+            <div class="trending-main">
+                <!-- Trending Title -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="trending-tittle">
+                            <!-- <strong>Trending News</strong> -->
+                            <div class="trending-animated ">
+                                <ul id="js-news" class="js-hidden">
+                                    <!-- <li class="news-item">Bangladesh dolor sit amet, consectetur adipisicing elit.</li> -->
+                                    <li class="news-item center">Bemvindo mai Funda&ccedil;&atilde;o Nova Esperan&ccedil;a Timor-Leste...!!!</li>
+                                    <!-- <li class="news-item">Rem ipsum dolor sit amet, consectetur adipisicing elit.</li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trending Top Section -->
+                <div class="row">
+                    <div class="col-lg-8">
+                        <!-- Trending Top -->
+                        {% for i in news %}
+                            {% if forloop.first %}
+                                {% if request.path == '/' %}
+                                    <div class="trending-top mb-30">
+                                        <div class="trend-top-img">
+                                            <img src="{{ i.image.url }}" alt="{{ i.title }}">
+                                            <div class="trend-top-cap">
+                                                <span>{{ i.category }}</span>
+                                                <p class="lead my-2 text-white"><b>{{ i.title }}</b></p>
+                                               <p class="lead my-2" style="color: white;"><b>{{ i.excerpt }}</b></p>
+                                                <h2>
+                                                    <a href="{% url 'detailnews' i.hashed%}">Read more...</a>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <!-- Right content -->
+                    <div class="col-lg-4 mb-1">
+                        {% for i in latest_news %}
+                        <div class="trand-right-single d-flex align-items-start mb-1" style="padding: 0;">
+                            <div class="trand-right-img" style="flex: 0 0 100px; max-width: 100px;">
+                                <img src="{{ i.image.url }}" class="img-fluid rounded">
+                            </div>
+                            <div class="trand-right-cap ml-2" style="line-height: 1.1;"> <!-- Atur line-height untuk merapatkan baris -->
+                                <span class="color1 mb-1" style="line-height: 1.1;">{{ i.category }}</span>
+                                <h6 class="text-white mb-1 mt-1" style="font-size: 0.9rem; line-height: 1.1;"><b>{{ i.title }}</b></h6> <!-- Line-height ditambahkan -->
+                                <p class="text-white mb-1" style="font-size: 0.9rem; line-height: 1.1; font-family: 'Times New Roman', serif; font-style: italic;"><b>{{ i.excerpt }}</b></p>
+                                <h6><a href="{% url 'detailnews' i.hashed %}" class="text-black ">Read more...</a></h6>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                
+                </div>
+                <!-- Trending Bottom Section -->
+                <div class="trending-bottom mt-5">
+                <div class="col-lg-12">
+                    <div class="row">
+                        {% for i in news %}
+                            {% if not forloop.first %}
+                                <div class="col-lg-3 col-md-6 mb-1">
+                                    <div class="single-bottom mb-1">
+                                        <div class="trend-bottom-img mb-1">
+                                            <img src="{{ i.image.url }}" alt="{{ i.title }}" class="facebook-style-image mb-1">
+                                        </div>
+                                        <p class="card-text text-black mb-1"  style="font-size: 0.9rem; line-height: 1.1; font-family: 'Times New Roman', serif; font-style: italic;">{{ i.created|date:"d M Y" }}</p>
+                                        <div class="trend-bottom-cap p-3 ">
+                                            <span class="color1 mb-3" style="font-size: 0.9rem; line-height: 1.1; font-family: 'Times New Roman', serif;">{{ i.category }}</span>
+
+                                            <h4 class="card-title text-white" class="text-black mb-1" style="font-size: 0.9rem; line-height: 1.1; font-family: 'Times New Roman', serif; font-style: italic;"><b>{{ i.title }}</b></h4>
+                                            <p class="card-text text-white"  style="font-size: 0.9rem; line-height: 1.1; font-family: 'Times New Roman', serif;"><b>{{ i.excerpt }} ....</b></p>
+                                           <h6><a href="{% url 'detailnews' i.hashed %}" class="text-black ">Read more...</a></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+            <!-- Start Pagination -->
+            <div class="pagination-area pb-45 text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="single-wrap d-flex justify-content-center">
+                                <nav class="blog-pagination" aria-label="Pagination">
+                                    <div class="row">
+                                        {% if news.has_other_pages %}
+                                            <ul class="pagination justify-content-center"> <!-- Center the pagination -->
+                                                {% if news.has_previous %}
+                                                    <li class="page-item">
+                                                        <a data-page="1" href="?page=1" class="page-link">First</a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a data-page="{{ news.previous_page_number }}" href="?page={{ news.previous_page_number }}" class="page-link">&laquo;</a>
+                                                    </li>
+                                                {% else %}
+                                                    <li class="page-item disabled"><span class="page-link">First</span></li>
+                                                    <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                                {% endif %}
+
+                                                {% if news.number|add:'-2' > 1 %}
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?page={{ news.number|add:'-2' }}">&hellip;</a>
+                                                    </li>
+                                                {% endif %}
+
+                                                {% for i in news.paginator.page_range %}
+                                                    {% if news.number == i %}
+                                                        <li class="page-item active" aria-current="page"><span class="page-link">{{ i }}</span></li>
+                                                    {% elif i > news.number|add:'-2' and i < news.number|add:'2' %}
+                                                        <li class="page-item">
+                                                            <a data-page="{{ i }}" href="?page={{ i }}" class="page-link">{{ i }}</a>
+                                                        </li>
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                                {% if news.paginator.num_pages > news.number|add:'2' %}
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="?page={{ news.number|add:'2' }}">&hellip;</a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a data-page="{{ news.paginator.num_pages }}" href="?page={{ news.paginator.num_pages }}" class="page-link">{{ news.paginator.num_pages }}</a>
+                                                    </li>
+                                                {% endif %}
+
+                                                {% if news.has_next %}
+                                                    <li class="page-item">
+                                                        <a data-page="{{ news.next_page_number }}" href="?page={{ news.next_page_number }}" class="page-link">&raquo;</a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a data-page="{{ news.paginator.num_pages }}" href="?page={{ news.paginator.num_pages }}" class="page-link">Last</a>
+                                                    </li>
+                                                {% else %}
+                                                    <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                                    <li class="page-item disabled"><span class="page-link">Last</span></li>
+                                                {% endif %}
+                                            </ul>
+                                        {% endif %}
+                                    </div>
+                                </nav>
+
+                            </div>
+                            <!-- <div class="my-1">
+                            <a class="btn btn-info" href="{% url 'index' %}">Back to Home</a>
+                          </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Pagination -->
+    <!-- Trending Area End -->
+
+    <!-- Whats New Start -->
+    <!-- <section class="whats-news-area pt-50 pb-20 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row d-flex justify-content-between">
+                        <h1>Graphic</h1>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="news-poster d-none d-lg-block">
+                        <img src="{% static 'assets/img/news/news_card.jpg' %}" alt="Poster">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Whats New End -->
+
+    <!-- Weekly News Start -->
+ 
+    <div class="weekly3-news-area pt-10 pb-130">
+    <div class="container">
+        <div class="weekly3-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-tittle mb-30">
+                        <h3>Weekly Top Activities</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="slider-wrapper">
+                    <!-- Slider -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="weekly3-news-active dot-style d-flex">
+                                {% for i in activities %}
+                                <div class="weekly3-single col-12 col-sm-6 col-md-4 col-lg-3">
+                                    <div class="weekly3-img">
+                                        <img src="{{ i.image.url }}" alt="" class="img-fluid">
+                                    </div>
+                                    <div class="weekly3-caption">
+                                        <p>{{ i.date|date:"d M Y" }}</p>
+                                        <span>{{ i.category }}</span>
+                                        <h5>{{ i.title }}</h5>
+                                        <h4><a href="#">Read more...</a></h4>
+                                    </div>
+                                </div> 
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    
+    <!-- Weekly News End -->
+
+    <!-- Start Pagination -->
+    <div class="pagination-area pb-45 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="single-wrap d-flex justify-content-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-start">
+                                <li class="page-item">
+                                    <a class="page-link" href="#"><span class="flaticon-arrow rotated"></span></a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                                <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                <li class="page-item"><a class="page-link" href="#">03</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#"><span class="flaticon-arrow right-arrow"></span></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Pagination -->
+
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function(){
+    $('.weekly3-news-active').slick({
+        infinite: true,
+        slidesToShow: 3,  // Jumlah slide yang ditampilkan pada desktop
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+            {
+                breakpoint: 1024,  // Tablet (md)
+                settings: {
+                    slidesToShow: 2,  // 2 slide pada tablet
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 768,  // Mobile (sm)
+                settings: {
+                    slidesToShow: 1,  // 1 slide pada mobile
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
+});
+</script>
+{% endblock %}

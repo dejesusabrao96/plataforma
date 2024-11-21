@@ -1,0 +1,94 @@
+{% extends "main/layout1.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<section class="tables">
+  <div class="container-fluid pt-4">
+    <header>
+      <ol class="breadcrumb mb-1 mt-1">
+        <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Report Form</a></li>
+        {% if page == "form" %}
+        <li class="breadcrumb-item"><a href="{% url 'index' %}">Report Form</a></li>
+        {% endif %}
+        <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+      </ol>
+    </header>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div id="divmessage" class="alert alert-{{ message.tags }} alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h2>
+              <p><center>Report Form</center></p>
+            </h2>
+
+            {% if page == "add" %}
+            <form action="{% url 'add_report' %}" id="indexForm" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row col-lg-12">
+                <table class="table table-hover">
+                  <tr>
+                    <td><label>Report :</label></td>
+                    <td><input class="form-control" type="text" name="report" value="{{ dokumentu.report }}"></td>
+                  </tr>
+                  <tr>
+                    <td><label>Year :</label></td>
+                    <td>
+                      <select name="year" class="form-control custom-select">
+                        <option value="">---Select Year---</option>
+                        {% for i in year %}
+                        <option value="{{ i.id }}" {% if i.id == dokumentu.year_id %} selected {% endif %}>
+                          {{ i.year }}
+                        </option>
+                        {% endfor %}
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label>Upload File :</label></td>
+                    <td>
+                      <input class="form-control" type="file" name="upload_file">
+                      {% if dokumentu.naran_file %}
+                      <p>Current file: <a href="{{ dokumentu.naran_file.url }}" target="_blank">{{ dokumentu.naran_file.name }}</a></p>
+                      {% endif %}
+                    </td>
+                  </tr>
+                </table>
+                <br>
+
+                <div class="form-group text-left">
+                  <button class="btn btn-sm btn-warning" onclick="self.history.back()">
+                    <span class="fa fa-angle-left"></span> Cancel
+                  </button>
+
+                  <button type="submit" name="save_and_add_another" class="btn btn-sm btn-default">
+                    <span class="fa fa-save"></span> Save and Add Another
+                  </button>
+                  <button type="submit" name="save" class="btn btn-sm btn-success">
+                    <span class="fa fa-save"></span> Save
+                  </button>
+                </div>
+              </div>
+            </form>
+            {% elif page == "update" %}
+            {% csrf_token %}
+            {% crispy form %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
