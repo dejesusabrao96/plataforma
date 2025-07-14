@@ -9,6 +9,13 @@ from django.contrib.auth.decorators import login_required
 from users.decorators import allowed_users
 import hashlib
 
+from rest_framework import viewsets
+from .serializers import ActivitiesSerializer
+
+class ActivityViewSet(viewsets.ModelViewSet):
+    queryset = Activities.objects.all()
+    serializer_class = ActivitiesSerializer
+
 # Create your views here.
 @login_required()
 @allowed_users(allowed_roles=['Admin'])

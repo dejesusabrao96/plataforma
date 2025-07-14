@@ -26,7 +26,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path('', include('main.urls')),
     path('utilizador/', include('users.urls')),
-    path('activity/', include('Activity.urls')),
+    path('api/', include('Activity.urls')),
     path('news/', include('news.urls')),
     path('project-implementation/', include('project_implementation.urls')),
     path('froala_editor/', include('froala_editor.urls')),

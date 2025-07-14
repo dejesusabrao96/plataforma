@@ -44,9 +44,11 @@ INSTALLED_APPS = [
     'Activity',
     'project_implementation',
     'crispy_forms',
-    'crispy_bootstrap4',
+    'crispy_bootstrap5',
     'main',
     'users',
+    'rest_framework',
+    
 ]
 
 MIDDLEWARE = [
@@ -150,3 +152,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
