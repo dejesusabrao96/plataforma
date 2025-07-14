@@ -75,8 +75,8 @@ def detailActivity(request, hashid):
 @allowed_users(allowed_roles=['Admin'])
 def updateActivity(request, hashid):
     group = request.user.groups.all()[0].name
-    # Ambil data News berdasarkan hashed ID
-    ActivityData = get_object_or_404(Activities, hashed=hashid)  # Pastikan kamu mencari berdasarkan hashed ID
+  
+    ActivityData = get_object_or_404(Activities, hashed=hashid) 
 
     if request.method == 'POST':
         form = activityForm(request.POST, instance=ActivityData)
@@ -92,7 +92,7 @@ def updateActivity(request, hashid):
         'page': "form",
         'group': group,
         'form': form,
-        'hashed': ActivityData.hashed  # Menambahkan hashed ID ke context untuk ditampilkan
+        'hashed': ActivityData.hashed 
     }
 
     return render(request, 'activityform.html', context)
@@ -102,7 +102,7 @@ def updateActivity(request, hashid):
 def DeleteActivity(request, hashid):
 	group = request.user.groups.all()[0].name
 	activity = get_object_or_404(Activities, id=hashid)
-	# an = news.news
+	
 	activity.delete()
 	messages.warning(request, f'Activity is Deleted Successfully.')
 	return redirect('actividade')
