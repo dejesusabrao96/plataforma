@@ -10,7 +10,7 @@ class NewsForm(forms.ModelForm):
     class Meta:
         model = News
         fields = ['title','excerpt','content','image','category']
-        exclude = ['created','updated','hashed']
+        exclude = ['created','updated']
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
