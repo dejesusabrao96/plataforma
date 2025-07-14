@@ -28,7 +28,7 @@ class News(models.Model):
 	category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='get_posts', verbose_name='Category')
 	created = models.DateTimeField(auto_now_add=True, verbose_name='Data Created')
 	updated = models.DateTimeField(auto_now=True, verbose_name='Data Updated')
-	hashed = models.CharField(max_length=32, blank=True)
+	
 
 
 	class Meta:
