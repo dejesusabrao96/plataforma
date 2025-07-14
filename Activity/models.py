@@ -12,7 +12,6 @@ class Activities(models.Model):
 	image = models.ImageField(upload_to='Posts/', null=True)
 	years=models.ForeignKey(Year, on_delete=models.CASCADE, related_name='years', verbose_name='Tinan')
 	date=models.DateField(verbose_name='Data Implemetasaun')
-	hashed = models.CharField(max_length=32, null=True, blank=True)
 
 	class Meta:
 		verbose_name = 'actividade'
