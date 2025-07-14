@@ -10,9 +10,6 @@ from django.contrib.auth.decorators import login_required
 from users.decorators import allowed_users
 import hashlib
 
-# def hash_md5(value):
-#     # Fungsi untuk menghasilkan hash MD5
-#     return hashlib.md5(value.encode()).hexdigest()
 
 
 # Create your views here.
@@ -41,15 +38,10 @@ def aboutPost(request):
 	}
 	return render(request, 'news.html', context)
 
-def detailNews(request, hashid):
-    # Ambil semua kategori
+def detailNews(request, hashid)
     cat = Category.objects.all()
-
-    # Ambil berita terbaru (3 berita terbaru)
     latest_news = News.objects.all().order_by('-created')[:3]
-
-    # Cari objek News berdasarkan hashed ID (bukan id)
-    news = get_object_or_404(News, hashed=hashid)  # Menggunakan hashed untuk pencarian
+    news = get_object_or_404(News, hashed=hashid)  
 
     context = {
         'latest_news': latest_news,
@@ -66,26 +58,18 @@ def addNews(request):
         form = NewsForm(request.POST, request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
-
-            # Simpan entri terlebih dahulu untuk mendapatkan ID (PK)
             instance.save()
-
-            # Setelah ID (PK) disimpan, kita dapat menggunakan ID tersebut untuk membuat hash yang konsisten
-            raw_string = str(instance.pk)  # Menggunakan primary key ID entri untuk hashing
+            raw_string = str(instance.pk)  
             instance.hashed = hashlib.md5(raw_string.encode('utf-8')).hexdigest()
             # instance.hashed = hashlib.sha256(raw_string.encode('utf-8')).hexdigest()
 
-
-
-            # Simpan kembali dengan hash yang telah dihitung
             instance.save()
 
             messages.success(request, 'News is added successfully.')
 
-            # Redirect sesuai dengan tombol yang dipilih (save_and_add_another atau not)
             if 'save_and_add_another' in request.POST:
-                return redirect('addnews')  # Misalnya ke halaman index
-            return redirect('List-News')  # Kembali ke form tambah berita
+                return redirect('addnews')  
+            return redirect('List-News') 
     else:
         form = NewsForm()
 
@@ -98,8 +82,7 @@ def addNews(request):
 @allowed_users(allowed_roles=['Admin'])
 def updateNews(request, hashid):
     group = request.user.groups.all()[0].name
-    # Ambil data News berdasarkan hashed ID
-    NewsData = get_object_or_404(News, hashed=hashid)  # Pastikan kamu mencari berdasarkan hashed ID
+    NewsData = get_object_or_404(News, hashed=hashid)  
 
     if request.method == 'POST':
         form = NewsForm(request.POST, instance=NewsData)
@@ -115,7 +98,7 @@ def updateNews(request, hashid):
         'page': "form",
         'group': group,
         'form': form,
-        'hashed': NewsData.hashed  # Menambahkan hashed ID ke context untuk ditampilkan
+        'hashed': NewsData.hashed  
     }
 
     return render(request, 'newsForm.html', context)
