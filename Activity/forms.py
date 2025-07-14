@@ -9,7 +9,7 @@ class activityForm(forms.ModelForm):
     class Meta:
         model = Activities
         fields = ['years','date','title','activity_content','category','image']
-        exclude = ['hashed']
+    
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
