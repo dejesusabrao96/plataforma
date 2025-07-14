@@ -36,25 +36,20 @@ def addActivity(request):
         if form.is_valid():
             instance = form.save(commit=False)
 
-            # Simpan entri terlebih dahulu untuk mendapatkan ID (PK)
+           
             instance.save()
 
-            # Setelah ID (PK) disimpan, kita dapat menggunakan ID tersebut untuk membuat hash yang konsisten
-            raw_string = str(instance.pk)  # Menggunakan primary key ID entri untuk hashing
+            raw_string = str(instance.pk) 
             instance.hashed = hashlib.md5(raw_string.encode('utf-8')).hexdigest()
-            # instance.hashed = hashlib.sha256(raw_string.encode('utf-8')).hexdigest()
+           
 
-
-
-            # Simpan kembali dengan hash yang telah dihitung
             instance.save()
 
             messages.success(request, 'Activity is added successfully.')
 
-            # Redirect sesuai dengan tombol yang dipilih (save_and_add_another atau not)
             if 'save_and_add_another' in request.POST:
-                return redirect('addactividade')  # Misalnya ke halaman index
-            return redirect('actividade')  # Kembali ke form tambah berita
+                return redirect('addactividade') 
+            return redirect('actividade')  
     else:
         form = activityForm()
 
