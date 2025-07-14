@@ -14,7 +14,7 @@ class ProjectImplementation(models.Model):
 	amount_of_funds =models.CharField(max_length=300, null=True,verbose_name='Montante Orcamento')
 	Funder = models.CharField(max_length = 300, verbose_name='Funder')
 	contact_person = models.CharField(max_length = 300, verbose_name='Contact Person', blank=True)
-	hashed = models.CharField(max_length=32, null=True, blank=True)
+	
 
 	class Meta:
 		verbose_name = 'activity'
