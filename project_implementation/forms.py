@@ -8,7 +8,7 @@ class ProjectImplementationForm(forms.ModelForm):
     class Meta:
         model = ProjectImplementation
         fields = ['years','date','activity','amount_of_funds','Funder','contact_person']
-        exclude = ['hashed']
+       
         
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
